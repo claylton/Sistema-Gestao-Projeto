@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'pages/cadastro_screen.page.dart';
+import 'pages/login_screen.page.dart';
 
 void main() {
   runApp(MyApp());
