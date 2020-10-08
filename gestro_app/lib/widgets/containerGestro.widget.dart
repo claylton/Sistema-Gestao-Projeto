@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:gestro_app/pages/themes/globals.themes.dart';
+import 'package:gestro_app/globals.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
 
-class ContainerGestro extends StatelessWidget {
+class ContainerGestro extends StatefulWidget {
   final String text;
   final Icon icon;
   final bool passVisible;
+  var valueForm;
+  Function onSaved;
 
-  const ContainerGestro({@required this.text, @required this.icon, this.passVisible = false});
+  ContainerGestro({@required this.text, @required this.icon, this.passVisible = false, this.valueForm, this.onSaved});
+
+  @override
+  _ContainerGestroState createState() => _ContainerGestroState();
+}
+
+class _ContainerGestroState extends State<ContainerGestro> {
+  // String email;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +32,22 @@ class ContainerGestro extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.1,
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
-        obscureText: passVisible,
+        obscureText: widget.passVisible,
         decoration: InputDecoration(
-          hintText: text,
+          hintText: widget.text,
           hintStyle: TextStyle(fontSize: 20, color: Colors.white),
           border: InputBorder.none,
           // icon: icon,
-          suffixIcon: icon,
+          suffixIcon: widget.icon,
         ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Digite um Campo';
+          }
+          return null;
+        },
+        // onSaved: (input) => widget.valueForm = input,
+        onSaved: this.widget.onSaved,
       ),
     );
   }

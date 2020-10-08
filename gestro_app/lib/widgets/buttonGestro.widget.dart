@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestro_app/pages/themes/globals.themes.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
 
 class ButtonGestro extends StatelessWidget {
   final String text;

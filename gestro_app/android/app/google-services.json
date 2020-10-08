@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "827161869679",
+    "firebase_url": "https://gestroapp-f1d93.firebaseio.com",
+    "project_id": "gestroapp-f1d93",
+    "storage_bucket": "gestroapp-f1d93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827161869679:android:208365c866722d4477fc9a",
+        "android_client_info": {
+          "package_name": "com.example.gestro_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827161869679-7mu5eo81f1goouft9lm01b8uv8k3b0c6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSYZEm75YA2mUKDh_QBV_9S39WdzA0cG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827161869679-7mu5eo81f1goouft9lm01b8uv8k3b0c6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
