@@ -1,6 +1,10 @@
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/pages/login_screen.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
@@ -17,29 +21,19 @@ class CadastroScreen extends StatefulWidget {
 class _CadastroScreenState extends State<CadastroScreen> {
   @override
   Widget build(BuildContext context) {
-    bool _initialized = false;
-    bool _error = false;
-    // final formKey = GlobalKey<FormState>();
-    final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+    FirebaseAuth auth = FirebaseAuth.instance;
+    Map<String, dynamic> docData = new Map();
 
-    // void initializeFlutterFire() async {
-    //   try {
-    //     await Firebase.initializeApp();
-    //     setState(() {
-    //       _initialized = true;
-    //     });
-    //   } catch (e) {
-    //     setState(() {
-    //       _error = true;
-    //     });
-    //   }
-    // }
-
-    // @override
-    // initState() {
-    //   initializeFlutterFire();
-    //   super.initState();
-    // }
+    Future<User> signUp(email, password) async {
+      try {
+        UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+        assert(userCredential.user != null);
+        assert(await userCredential.user.getIdToken() != null);
+        return userCredential.user;
+      } catch (e) {
+        return null;
+      }
+    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -132,17 +126,18 @@ class _CadastroScreenState extends State<CadastroScreen> {
                           "nome": nome,
                           "email": email,
                           "senha": senha,
+
+                        signUp(email, senha).then((value) {
+                          docData['name'] = nome;
+                          docData['email'] = email;
+                          docData['password'] = senha;
+                          docData['type'] = 'Aluno';
+                          docData['created_at'] = Timestamp.now();
+                          docData['updated_at'] = Timestamp.now();
+                          FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
+                          Navigator.pop(context);
                         });
                       }
-                      // FirebaseFirestore.instance.collection('ProjetoTeste').doc('Projeto1').set({
-                      //   "nome": "claylton",
-                      //   "santos": "santos",
-                      //   "idade": 23,
-                      // });
-                      // FirebaseFirestore.instance.collection('ProjetoTeste').add({
-                      //   'nome': 'Projeto claylton',
-                      //   'idade': 23,
-                      // });
                     },
                     child: ButtonGestro(
                       text: 'Cadastrar',

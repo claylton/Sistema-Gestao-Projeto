@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'pages/cadastro_screen.page.dart';
-import 'pages/login_screen.page.dart';
+import 'package:gestro_app/pages/splash_screen.page.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Gestro App',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: CadastroScreen(),
+      home: SplashScreen(),
       // initialRoute: '/',
       // routes: <String, WidgetBuilder>{
       //   '/': (context) => CadastroScreen(),
