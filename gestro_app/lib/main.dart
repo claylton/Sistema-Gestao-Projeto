@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Gestro App',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: CadastroScreen(),
       // initialRoute: '/',
       // routes: <String, WidgetBuilder>{
       //   '/': (context) => CadastroScreen(),

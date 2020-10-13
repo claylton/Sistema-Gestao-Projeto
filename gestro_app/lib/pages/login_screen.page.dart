@@ -28,10 +28,15 @@ class LoginScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              ContainerGestro(text: "Email", icon: Icon(Icons.email)),
+              ContainerGestro(
+                text: "Email",
+                icon: Icon(Icons.email),
+                qtdeLengthCharacters: 35,
+              ),
               ContainerGestro(
                 text: "Senha",
                 icon: Icon(Icons.lock),
+                qtdeLengthCharacters: 15,
                 passVisible: true,
               ),
               ButtonGestro(

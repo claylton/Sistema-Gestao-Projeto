@@ -51,9 +51,13 @@ class _CadastroScreenState extends State<CadastroScreen> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/BkRegisterScreen.png"), fit: BoxFit.fitWidth),
+              image: DecorationImage(
+                  image: AssetImage("assets/BkRegisterScreen.png"),
+                  fit: BoxFit.fitWidth),
             ),
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width, maxHeight: MediaQuery.of(context).size.height),
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: MediaQuery.of(context).size.height),
             //Form key
             child: Form(
               key: widget.formKey,
@@ -66,7 +70,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: Center(
                       child: Text(
                         "Cadastro",
-                        style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.purple,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -78,6 +85,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                     valueForm: nome,
                     onSaved: (input) => nome = input,
+                    qtdeLengthCharacters: 50,
                   ),
                   ContainerGestro(
                     text: "Email",
@@ -87,6 +95,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                     valueForm: email,
                     onSaved: (input) => email = input,
+                    qtdeLengthCharacters: 35,
                   ),
                   ContainerGestro(
                     text: "Senha",
@@ -97,6 +106,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                     valueForm: senha,
                     onSaved: (input) => senha = input,
+                    qtdeLengthCharacters: 15,
                   ),
                   ContainerGestro(
                     text: "Confirme a senha",
@@ -105,6 +115,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       Icons.lock,
                       color: purpleSecudary,
                     ),
+                    qtdeLengthCharacters: 15,
                   ),
                   GestureDetector(
                     // padding: EdgeInsets.all(0),
@@ -114,7 +125,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         print(email);
                         print(nome);
                         print(senha);
-                        FirebaseFirestore.instance.collection('ProjetoTeste').doc('Projeto1').set({
+                        FirebaseFirestore.instance
+                            .collection('ProjetoTeste')
+                            .doc('Projeto1')
+                            .set({
                           "nome": nome,
                           "email": email,
                           "senha": senha,
@@ -149,7 +163,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         child: InkWell(
                           child: Text(
                             "Faça login.",
-                            style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.purple,
+                                fontWeight: FontWeight.bold),
                           ),
                           onTap: null,
                         ),

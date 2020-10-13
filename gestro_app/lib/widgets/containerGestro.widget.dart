@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
@@ -6,10 +7,17 @@ class ContainerGestro extends StatefulWidget {
   final String text;
   final Icon icon;
   final bool passVisible;
+  int qtdeLengthCharacters;
   var valueForm;
   Function onSaved;
 
-  ContainerGestro({@required this.text, @required this.icon, this.passVisible = false, this.valueForm, this.onSaved});
+  ContainerGestro(
+      {@required this.text,
+      @required this.icon,
+      this.passVisible = false,
+      this.valueForm,
+      this.onSaved,
+      this.qtdeLengthCharacters});
 
   @override
   _ContainerGestroState createState() => _ContainerGestroState();
@@ -32,6 +40,9 @@ class _ContainerGestroState extends State<ContainerGestro> {
       width: MediaQuery.of(context).size.width / 1.1,
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)
+        ],
         obscureText: widget.passVisible,
         decoration: InputDecoration(
           hintText: widget.text,
