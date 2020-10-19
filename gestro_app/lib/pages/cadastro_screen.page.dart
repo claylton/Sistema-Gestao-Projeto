@@ -61,7 +61,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 35),
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(top: 245),
+                    padding: EdgeInsets.only(top: 250),
                     child: Center(
                       child: Text(
                         "Cadastro",
@@ -73,6 +73,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                   ),
                   ContainerGestro(
+                    textKey: "NameKey",
                     text: "Nome",
                     icon: Icon(
                       Icons.person,
@@ -83,6 +84,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     onSaved: (input) => nome = input,
                   ),
                   ContainerGestro(
+                    textKey: "EmailKey",
                     text: "Email",
                     icon: Icon(
                       Icons.mail,
@@ -90,9 +92,14 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                     qtdeLengthCharacters: 35,
                     valueForm: email,
+                    // if(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email))
+                    // {
+                    //   return Text("E-mail inválido!")
+                    // },
                     onSaved: (input) => email = input,
                   ),
                   ContainerGestro(
+                    textKey: "PassKey",
                     text: "Senha",
                     passVisible: true,
                     icon: Icon(
@@ -104,6 +111,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     onSaved: (input) => senha = input,
                   ),
                   ContainerGestro(
+                    textKey: "PassConfirmKey",
                     text: "Confirme a senha",
                     passVisible: true,
                     icon: Icon(

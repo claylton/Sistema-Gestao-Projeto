@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 child: Container(
                   padding: EdgeInsets.only(
-                    top: 320,
+                    top: 365,
                     // top: MediaQuery.of(context).size.height * 0.46,
                     // top: 150,
                     left: 35,
@@ -122,6 +122,7 @@ class LoginScreen extends StatelessWidget {
                               left: 5,
                             ),
                             child: InkWell(
+                              key: ValueKey("CadastrarSeKey"),
                               child: Text(
                                 "Cadastrar-se.",
                                 style: TextStyle(
