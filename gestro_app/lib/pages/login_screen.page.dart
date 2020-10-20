@@ -1,11 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:gestro_app/pages/cadastro_screen.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
+
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gestro_app/globals.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -69,6 +72,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       ContainerGestro(
+                        textKey: "EmailKey",
                         text: "Email",
                         icon: Icon(
                           Icons.email,
@@ -77,6 +81,7 @@ class LoginScreen extends StatelessWidget {
                         valueForm: email,
                       ),
                       ContainerGestro(
+                        textKey: "PassKey",
                         text: "Senha",
                         icon: Icon(
                           Icons.lock,
@@ -98,6 +103,7 @@ class LoginScreen extends StatelessWidget {
                           });
                         },
                         child: ButtonGestro(
+                          textKey: "btnLoginKey",
                           text: 'Login',
                         ),
                       ),

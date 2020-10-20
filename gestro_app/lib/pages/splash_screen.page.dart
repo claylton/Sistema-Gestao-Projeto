@@ -1,10 +1,8 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 
-import 'login_screen.page.dart';
+import 'package:gestro_app/pages/login_screen.page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

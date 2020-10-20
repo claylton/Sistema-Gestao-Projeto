@@ -1,13 +1,15 @@
 import 'dart:collection';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
-import 'package:gestro_app/pages/login_screen.page.dart';
-import 'package:gestro_app/themes/globals.themes.dart';
+
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/pages/login_screen.page.dart';
 
 import '../globals.dart';
 
@@ -142,6 +144,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       }
                     },
                     child: ButtonGestro(
+                      textKey: "btnCadastrarKey",
                       text: 'Cadastrar',
                     ),
                   ),
