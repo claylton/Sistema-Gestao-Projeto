@@ -10,7 +10,12 @@ class ContainerGestro extends StatefulWidget {
   int qtdeLengthCharacters;
   String textKey;
   var valueForm;
-  Function onSaved;
+  Function onSaved, validator;
+  dynamic myController = TextEditingController();
+
+  void dispose() {
+    myController.dispose();
+  }
 
   ContainerGestro(
       {@required this.text,
@@ -19,7 +24,9 @@ class ContainerGestro extends StatefulWidget {
       this.valueForm,
       this.onSaved,
       this.qtdeLengthCharacters,
-      this.textKey});
+      this.textKey,
+      this.validator,
+      this.myController});
 
   @override
   _ContainerGestroState createState() => _ContainerGestroState();
@@ -54,12 +61,8 @@ class _ContainerGestroState extends State<ContainerGestro> {
           // icon: icon,
           suffixIcon: widget.icon,
         ),
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Digite um Campo';
-          }
-          return null;
-        },
+        controller: widget.myController,
+        validator: widget.validator,
         // onSaved: (input) => widget.valueForm = input,
         onSaved: this.widget.onSaved,
       ),

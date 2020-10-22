@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -37,6 +38,9 @@ class _CadastroScreenState extends State<CadastroScreen> {
         return null;
       }
     }
+
+    dynamic myControllerPass = TextEditingController();
+    dynamic myControllerPassConfirm = TextEditingController();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -84,6 +88,12 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     qtdeLengthCharacters: 50,
                     valueForm: nome,
                     onSaved: (input) => nome = input,
+                    validator: (nameValue) {
+                      if (nameValue.isEmpty) {
+                        return 'O campo não pode ficar em branco.';
+                      }
+                      return null;
+                    },
                   ),
                   ContainerGestro(
                     textKey: "EmailKey",
@@ -94,10 +104,16 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                     qtdeLengthCharacters: 35,
                     valueForm: email,
-                    // if(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email))
-                    // {
-                    //   return Text("E-mail inválido!")
-                    // },
+                    validator: (emailValue) {
+                      if (emailValue.isEmpty) {
+                        return 'O campo não pode ficar em branco.';
+                      }
+
+                      if (!(EmailValidator.validate(emailValue))) {
+                        return 'E-mail inválido!';
+                      }
+                      return null;
+                    },
                     onSaved: (input) => email = input,
                   ),
                   ContainerGestro(
@@ -110,6 +126,23 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     ),
                     qtdeLengthCharacters: 15,
                     valueForm: senha,
+                    myController: myControllerPass,
+                    validator: (passValue) {
+                      if (passValue.isEmpty) {
+                        return 'O campo não pode ficar em branco.';
+                      }
+
+                      if (passValue.length < 6) {
+                        return 'Senha tem menos que 6 dígitos.';
+                      }
+
+                      if (myControllerPass.text !=
+                          myControllerPassConfirm.text) {
+                        return 'As senhas precisam ser iguais.';
+                      }
+
+                      return null;
+                    },
                     onSaved: (input) => senha = input,
                   ),
                   ContainerGestro(
@@ -121,6 +154,23 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       color: purpleSecudary,
                     ),
                     qtdeLengthCharacters: 15,
+                    myController: myControllerPassConfirm,
+                    validator: (passConfirmValue) {
+                      if (passConfirmValue.isEmpty) {
+                        return 'O campo não pode ficar em branco.';
+                      }
+
+                      if (passConfirmValue.length < 6) {
+                        return 'Senha tem menos que 6 dígitos.';
+                      }
+
+                      if (myControllerPass.text !=
+                          myControllerPassConfirm.text) {
+                        return 'As senhas precisam ser iguais.';
+                      }
+
+                      return null;
+                    },
                   ),
                   GestureDetector(
                     // padding: EdgeInsets.all(0),
