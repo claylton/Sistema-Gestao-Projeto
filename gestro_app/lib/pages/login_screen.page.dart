@@ -1,5 +1,5 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,6 +32,9 @@ class LoginScreen extends StatelessWidget {
         return null;
       }
     }
+
+    dynamic myControllerEmail = TextEditingController();
+    dynamic myControllerPass = TextEditingController();
 
     return FutureBuilder(
         future: _initialization,
@@ -79,6 +82,17 @@ class LoginScreen extends StatelessWidget {
                         ),
                         qtdeLengthCharacters: 35,
                         valueForm: email,
+                        myController: myControllerEmail,
+                        validator: (emailValue) {
+                          if (emailValue.isEmpty) {
+                            return 'O campo não pode ficar em branco.';
+                          }
+
+                          if (!(EmailValidator.validate(emailValue))) {
+                            return 'E-mail inválido!';
+                          }
+                          return null;
+                        },
                       ),
                       ContainerGestro(
                         textKey: "PassKey",
@@ -89,18 +103,31 @@ class LoginScreen extends StatelessWidget {
                         qtdeLengthCharacters: 15,
                         passVisible: true,
                         valueForm: senha,
+                        myController: myControllerPass,
+                        validator: (passValue) {
+                          if (passValue.isEmpty) {
+                            return 'O campo não pode ficar em branco.';
+                          }
+
+                          if (passValue.length < 6) {
+                            return 'Senha tem menos que 6 dígitos.';
+                          }
+                          return null;
+                        },
                       ),
                       GestureDetector(
                         onTap: () {
-                          signIn(email, senha).then((value) {
-                            // print(value);
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomePage(),
-                              ),
-                            );
-                          });
+                          if (EmailValidator.validate(myControllerEmail.text) &&
+                              (myControllerPass.text.toString().length >= 6)) {
+                            signIn(email, senha).then((value) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
+                            });
+                          }
                         },
                         child: ButtonGestro(
                           textKey: "btnLoginKey",
