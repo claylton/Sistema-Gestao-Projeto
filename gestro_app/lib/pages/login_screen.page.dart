@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:gestro_app/pages/cadastro_screen.page.dart';
+import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
@@ -18,14 +18,10 @@ class LoginScreen extends StatelessWidget {
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
     FirebaseAuth auth = FirebaseAuth.instance;
 
-    dynamic myControllerEmail = TextEditingController();
-    dynamic myControllerPass = TextEditingController();
-
     Future<User> signIn(String email, String password) async {
       try {
         UserCredential userCredential = await auth.signInWithEmailAndPassword(
             email: email, password: password);
-        // print("---\n${userCredential.user}\n---");
 
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
@@ -35,26 +31,11 @@ class LoginScreen extends StatelessWidget {
         return userCredential.user;
       } catch (e) {
         print("===Error===\n${e}\n-----------");
-        // StreamBuilder(
-        //     stream: FirebaseFirestore.instance.collection("Users").snapshots(),
-        //     builder: (context, snapshot) {
-        //       if (!snapshot.hasData) {
-        //         print("Sem data");
-        //       }
-
-        //       if (snapshot.hasData) {
-        //         print("Com data");
-        //         print(snapshot.data.documents[0]);
-        //       }
-        //     });
-
-        // FirebaseFirestore.instance
-        //     .collection('Users')
-        //     .where('email', isEqualTo: "${myControllerEmail.text}")
-        //     .snapshots()
-        //     .listen((data) => print('${data.docs[0]['email']}'));
       }
     }
+
+    dynamic myControllerEmail = TextEditingController();
+    dynamic myControllerPass = TextEditingController();
 
     return FutureBuilder(
         future: _initialization,
@@ -147,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                                 (myControllerPass.text.toString().length >=
                                     6)) {
                               // print(value);
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => HomePage(),
