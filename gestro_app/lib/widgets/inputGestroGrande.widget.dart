@@ -48,8 +48,11 @@ class _InputGestroGrandeState extends State<InputGestroGrande> {
       width: MediaQuery.of(context).size.width / 1.1,
       height: MediaQuery.of(context).size.height * 0.25,
       child: TextFormField(
+        maxLines: 8,
         key: ValueKey(widget.textKey),
-        inputFormatters: [LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)],
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)
+        ],
         obscureText: widget.passVisible,
         decoration: InputDecoration(
           hintText: widget.text,

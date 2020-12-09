@@ -29,7 +29,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
   FirebaseAuth auth = FirebaseAuth.instance;
   Future<User> signUp(String email, String password) async {
     try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       assert(userCredential.user != null);
       assert(await userCredential.user.getIdToken() != null);
       return userCredential.user;
@@ -41,7 +42,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
       if (e.code == "email-already-in-use") {
         showDialog(
           context: context,
-          builder: (_) => AlertDialog(title: Text("Esse e-mail já está cadastrado.")),
+          builder: (_) =>
+              AlertDialog(title: Text("Esse e-mail já está cadastrado.")),
         );
       }
     }
@@ -84,7 +86,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   child: Text(
                     "Cadastro",
                     key: ValueKey("CadastroTextKey"),
-                    style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.purple,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -212,8 +217,12 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         docData['type'] = 'Pesquisador';
                         docData['curriculum'] = myControllerLattes.text;
                         docData['activationStatus'] = null;
-                        FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
-                        Toast.show("Usuário cadastrado!", context, duration: 5, gravity: Toast.BOTTOM);
+                        FirebaseFirestore.instance
+                            .collection('Users')
+                            .doc(value.uid)
+                            .set(docData);
+                        Toast.show("Usuário esperando aprovação", context,
+                            duration: 5, gravity: Toast.BOTTOM);
 
                         Navigator.pop(context);
                       },
@@ -240,7 +249,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: InkWell(
                       child: Text(
                         "Faça login.",
-                        style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.purple,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Future.delayed(

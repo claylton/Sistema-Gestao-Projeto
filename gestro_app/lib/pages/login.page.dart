@@ -24,7 +24,8 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(
+            email: email, password: password);
         // print("---\n${userCredential.user}\n---");
 
         assert(userCredential.user != null);
@@ -141,13 +142,17 @@ class LoginScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (EmailValidator.validate(myControllerEmail.text) && (myControllerPass.text.toString().length >= 6)) {
-                            signIn(myControllerEmail.text, myControllerPass.text).then((value) {
+                          if (EmailValidator.validate(myControllerEmail.text) &&
+                              (myControllerPass.text.toString().length >= 6)) {
+                            signIn(myControllerEmail.text,
+                                    myControllerPass.text)
+                                .then((value) {
                               if (value == null) {
                                 showDialog(
                                   context: context,
                                   builder: (_) => AlertDialog(
-                                    title: Text("O e-mail não está cadastrado no sistema"),
+                                    title: Text(
+                                        "O e-mail não está cadastrado no sistema ou a senha está incorreta."),
                                   ),
                                 );
                                 return;
@@ -163,7 +168,8 @@ class LoginScreen extends StatelessWidget {
                             showDialog(
                               context: context,
                               builder: (_) => AlertDialog(
-                                title: Text("Formato de e-mail inválido ou senha com menos de 6 dígitos."),
+                                title: Text(
+                                    "Formato de e-mail inválido ou senha com menos de 6 dígitos."),
                               ),
                             );
                           }

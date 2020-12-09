@@ -43,6 +43,7 @@ class NovoAlunoPage extends StatelessWidget {
     });
 
     AbaAluno(projectModel: this.projectModel);
+    Navigator.pop(context);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -105,11 +106,13 @@ class NovoAlunoPage extends StatelessWidget {
                   InputGestro(
                     text: "Senha",
                     icon: Icon(Icons.lock),
+                    passVisible: true,
                     myController: myControllerAlunoSenha,
                   ),
                   InputGestro(
                     text: "Confirme a senha",
                     icon: Icon(Icons.lock),
+                    passVisible: true,
                     myController: myControllerAlunoPassConfirm,
                   ),
                   GestureDetector(

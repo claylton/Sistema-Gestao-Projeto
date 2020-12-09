@@ -3,6 +3,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/abas/abaTarefa.page.dart';
+import 'package:gestro_app/pages/tarefas.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -33,10 +34,12 @@ class NovaTarefaPage extends StatelessWidget {
       "description": myControllerDescTarefa.text,
       "deadline": dataPrazo,
     });
+    AbaTarefa(projectModel: this.projeto);
+    Navigator.pop(context);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => AbaTarefa(projectModel: this.projeto),
+        builder: (context) => TarefaPage(),
       ),
     );
   }
